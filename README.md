@@ -1,1 +1,1 @@
-**myTimeline jQuery plugin
+## myTimeline jQuery plugin
