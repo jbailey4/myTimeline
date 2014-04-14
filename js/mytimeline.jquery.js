@@ -1,13 +1,13 @@
 /*
  *  Timeline.js
- *  A simple jQuery plugin to add a Personal timeline to your blog, website, etc. 
-    Select where you would like your timeline to display (ex. $('div.my-timeline')...) and just pass in an array of objects 
-    containing your story as the first parameter. Three options exist: order, theme, and ajax. Set order to either "latest" or "earliest" to display your 
+ *  A simple jQuery plugin to add a Personal timeline to your blog, website, etc.
+    Select where you would like your timeline to display (ex. $('div.my-timeline')...) and just pass in an array of objects
+    containing your story as the first parameter. Three options exist: order, theme, and ajax. Set order to either "latest" or "earliest" to display your
     story in a particular order. Set theme to either "dark" or "light" (IMPORTANT: requires a css file), otherwise just
     specify your own styles and ignore the theme option. The ajax option is just as string literal specifying a path to some json
     file containing your story. Note, if you use the ajax option the first parameter is unnecessary. The timeline will just be in a <div/> container, each year specified will be a <ul/>, and each
     event in a year will be a <li/>.
-    Default option values: 
+    Default option values:
         order: latest,
         theme: dark,
         ajax: null
@@ -45,8 +45,8 @@
         },
         buildTimeline: function() {
             // checks options to output the timeline
-            if ( this.options.ajax != null ) this.ajaxTimeline();
-            else this.loadTimeline();          
+            if ( this.options.ajax !== null ) this.ajaxTimeline();
+            else this.loadTimeline();
         },
         ajaxTimeline: function() {
             var self = this,
@@ -73,7 +73,7 @@
                     html += "</ul>";
                 });
                 // add the timeline to the page
-                self.renderTimelime( html ); 
+                self.renderTimelime( html );
             });
         },
         loadTimeline: function() {
@@ -83,7 +83,7 @@
 
                 // checking order option, if "earliest" reverse array
                 if ( self.options.order == "earliest" ) theData.reverse();
-                // iterate over the data supplied as first parameter (if an ajax option isn't specified) 
+                // iterate over the data supplied as first parameter (if an ajax option isn't specified)
                 $.each(theData, function(key, value) {
                     // each year value, ex.  2014, 2013, or could be latest
                     html += "<h4>" + theData[key].year + "</h4>";
@@ -101,7 +101,7 @@
                 });
                 // add the timeline to the page
                 self.renderTimelime( html );
-        }, 
+        },
         renderTimelime: function(dom) {
             // create element for the timeline and add to the selected element (i.e. this.$el)
             $('<div/>', {
@@ -125,5 +125,5 @@
         theme       : 'dark',
         ajax        : null
     };
-    
+
 })( jQuery );
