@@ -29,7 +29,11 @@
 <script type="text/javascript">
 $(document).ready(function() {
 
-    $( '.my-timeline' ).myTimeline( history );
+    // $( '.my-timeline' ).myTimeline( history );
+
+    $( '.my-timeline' ).myTimeline(null, {
+        ajax: 'inc/history.json'
+    });
 
 });
 </script>
