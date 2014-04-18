@@ -9,14 +9,12 @@
     event in a year will be a <li/>.
     Default option values:
         order: latest,
-        theme: dark,
-        ajax: null
+        theme: dark
 */
 ;(function($) { // pass jQuery($) to avoid clashing
 
     var Timeline = {
-        // initializer
-        create: function( data, options, el ) {
+        create: function( data, options, el ) { // initializer
 
             this.data = data || [{
                 year: 'The year is 2054',
@@ -29,42 +27,38 @@
 
             this.options = $.extend( {}, $.fn.myTimeline.options, options );
 
-            // create the timeline and inject in the dom, with all supplied options
-            this.loadTimeline();
+            this.loadTimeline(); // create the timeline and inject in the dom, with all supplied options
         },
-        loadTimeline: function() {
+        loadTimeline: function () {
             var self = this,
-                html = "";
+                html = [];
 
-                function build( data ) {
-                    // checking order option, if "earliest" reverse array
-                    if ( self.options.order == "earliest" ) data.reverse();
-                    // iterate over the data supplied as first parameter (if an ajax option isn't specified)
-                    $.each(data, function(key, value) {
-                        // each year value, ex.  2014, 2013, or could be latest
-                        html += "<h4>" + data[key].year + "</h4>";
-                        html += "<ul class='Timeline-yearEvents'>";
-                        // check if events are contained in an array, so we can iterate each one
-                        if ( "object" == typeof data[key].events ) {
+                function build ( data ) {
+                    if ( self.options.order == "earliest" ) data.reverse(); // checking order option, if "earliest" reverse array
+                   
+                    $.each( data, function ( key, value ) { // iterate over the data supplied as first parameter (if an ajax option isn't specified)
+                        html.push("<h4>" + data[key].year + "</h4><ul class='Timeline-yearEvents'>"); // each year value, ex.  2014, 2013, or could be latest
+
+                        if ( "object" == typeof data[key].events ) { // check if events are contained in an array, so we can iterate each one
                             $.each( data[key].events, function( item ) {
-                                html += "<li>" + data[key].events[item] + "</li>";
+                                html.push("<li>" + data[key].events[item] + "</li>");
                             });
-                        // check if the event is just a string, and just add it
-                        } else if ( "string" == typeof data[key].events ) {
-                            html += "<li>" + data[key].events + "</li>";
+                       
+                        } else if ( "string" == typeof data[key].events ) { // check if the event is just a string, and just add it
+                            html.push("<li>" + data[key].events + "</li>");
                         }
-                        html += "</ul>";
+
+                        html.push("</ul>");
                     });
-                    // Add the timeline to the page
-                    self.renderTimelime( html );
+
+                    self.renderTimelime( html.join('') ); // Add the timeline to the page
                 }
 
-                if ( this.options.ajax ) $.getJSON( self.options.ajax, build( ajaxData ) );
-                else build ( self.data );
+                if ( self.options.ajax ) $.getJSON( self.options.ajax, function ( ajaxData ) { build( ajaxData ); } );    
+                else build( self.data );
         },
-        renderTimelime: function(dom) {
-            // create element for the timeline and add to the selected element (i.e. this.$el)
-            $('<div/>', {
+        renderTimelime: function ( dom ) {
+            $('<div/>', { // create element for the timeline and add to the selected element (i.e. this.$el)
                 class: "Timeline Timeline--" + this.options.theme + "",
                 html: dom
             }).appendTo( this.$el ); //add the html to the jquery element
@@ -72,15 +66,14 @@
     };
 
     $.fn.myTimeline = function( data, options ) {
-        return this.each(function() {
+        return this.each( function () {
             var timeline = Object.create( Timeline );
             timeline.create( data, options, this );
             $.data( this, 'myTimeline', timeline );
         });
     };
 
-    //prevent immutable options, allow overrides
-    $.fn.myTimeline.options = {
+    $.fn.myTimeline.options = { //prevent immutable options, allow overrides
         order       : 'latest',
         theme       : 'dark'
     };
