@@ -9,7 +9,7 @@
         html {
             font: 1em/1.4 sans-serif;
         }
-        .my-timeline {
+        .my-timeline, .my-timeline-ajax {
             max-width: 70em;
             margin: 0 auto;
             padding: 2em;
@@ -19,20 +19,27 @@
 <body>
 
     <section class="my-timeline">
+        <h2>myTimeline</h2>
         <!-- dynamic timeline should follow... -->
+    </section>
+
+    <section class="my-timeline-ajax">
+        <!-- dynamic timeline should follow... -->
+        <h2>myTimeline ajaxed & changed options</h2>
     </section>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
 <script type="text/javascript" src="../js/mytimeline.jquery.js"></script>
 <script type="text/javascript" src="inc/history.js"></script>
+
 <script type="text/javascript">
 $(document).ready(function() {
 
     $( '.my-timeline' ).myTimeline( history );
 
     // Or the ajax way, with changes to the default options
-    $( '.my-timeline' ).myTimeline( null, {
+    $( '.my-timeline-ajax' ).myTimeline( null, {
         ajax: 'inc/history.json',
         order: 'earliest',
         theme: 'light'
