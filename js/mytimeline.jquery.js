@@ -4,8 +4,9 @@
     Select where you would like your timeline to display (ex. $('div.my-timeline')...) and just pass in an array of objects
     containing your story as the first parameter. Three options exist: order, theme, and ajax. Set order to either "latest" or "earliest" to display your
     story in a particular order. Set theme to either "dark" or "light" (IMPORTANT: requires a css file), otherwise just
-    specify your own styles and ignore the theme option. The ajax option is just as string literal specifying a path to some json
-    file containing your story. Note, if you use the ajax option the first parameter is unnecessary. The timeline will just be in a <div/> container, each year specified will be a <ul/>, and each
+    specify your own styles and ignore the theme option. The ajax option is just a string literal specifying a path to some json
+    file containing your story. Note, if you use the ajax option the first parameter is unnecessary.
+    The timeline will be in a <div/> container, each year specified will be a <ul/>, and each
     event in a year will be a <li/>.
     Default option values:
         order: latest,
@@ -36,7 +37,7 @@
                 function build ( data ) {
                     if ( self.options.order == "earliest" ) data.reverse(); // checking order option, if "earliest" reverse array
                    
-                    $.each( data, function ( key, value ) { // iterate over the data supplied as first parameter (if an ajax option isn't specified)
+                    $.each( data, function ( key, value ) { // iterate over the data supplied as first parameter
                         html.push("<h4>" + data[key].year + "</h4><ul class='Timeline-yearEvents'>"); // each year value, ex.  2014, 2013, or could be latest
 
                         if ( "object" == typeof data[key].events ) { // check if events are contained in an array, so we can iterate each one

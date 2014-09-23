@@ -1,4 +1,4 @@
-var history = [ 
+var timeline = [ 
     {
         year: 2014,
         events: "Voluptatibus, amet quos labore id dolor minima! Saepe, inventore vero porro iusto!"
