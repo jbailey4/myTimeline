@@ -9,6 +9,11 @@ Just grab the repo and include `mytimeline.jquery.min.js` after jQuery.
 </body>
 </html>
 ```
+Or install via Bower.
+``` bash
+$: bower install mytimeline
+```
+And include the main files (js/mytimeline.jquery.js & css/mytimeline.css) in your project.
 
 ## Usage
 After including the plugin select where you would like your timeline to render and supply some data with your story, see format section.
