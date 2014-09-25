@@ -1,0 +1,26 @@
+{
+  "name": "myTimeline",
+  "version": "1.0",
+  "homepage": "https://github.com/jbailey4/myTimeline",
+  "authors": [
+    "josh <jbailey0157@gmail.com>"
+  ],
+  "description": "A tiny jQuery plugin to add a personal timeline to your blog, website, etc.",
+  "main": [
+    "js/mytimeline.jquery.js",
+    "css/timeline.css"
+  ],
+  "keywords": [
+    "timeline",
+    "jquery",
+    "plugin"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
